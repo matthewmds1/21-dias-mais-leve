@@ -1,0 +1,20 @@
+# ─────────────────────────────────────────────
+#  PRODUTO PAGO — NUNCA VERSIONAR
+#  Este repositorio e publico (exigencia do GitHub Pages no plano gratuito).
+#  Tudo abaixo e material que o cliente paga para receber.
+# ─────────────────────────────────────────────
+kit-v2/
+*.pdf
+*.zip
+*.docx
+Claude outputs/
+
+# Build e ambiente
+.sites-runtime/
+node_modules/
+dist/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

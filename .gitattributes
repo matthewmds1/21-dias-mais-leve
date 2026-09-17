@@ -1,0 +1,10 @@
+# Normaliza quebras de linha: LF no repositorio, CRLF no Windows ao trabalhar.
+# Sem isto, cada troca de editor gera diff do arquivo inteiro.
+* text=auto eol=lf
+
+# Binarios nunca passam por conversao
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.pdf binary
+*.zip binary

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Seu pedido | Projeto 21 Dias Mais Leve</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23243f36'/%3E%3Ctext x='20' y='27' text-anchor='middle' fill='white' font-size='23' font-family='Georgia'%3E21%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="cart-page">
+
+<!-- ============================================================
+     TROCAR ANTES DE PUBLICAR: os dois links de checkout, logo abaixo,
+     na constante CHECKOUT do script no fim desta pagina.
+       so      -> checkout de R$ 24,90 (somente o principal)
+       combo   -> checkout de R$ 34,80 (principal + Mente e Alimentacao)
+     Os precos aparecem so em data-preco nos elementos; o total e calculado.
+     ============================================================ -->
+
+<header>
+  <a class="brand" href="index.html"><span class="brand-icon">21</span><span>PROJETO 21 DIAS<span class="brand-sub">MAIS LEVE</span></span></a>
+  <span class="step">Passo 1 de 2 · Revise seu pedido</span>
+</header>
+
+<main class="cart">
+
+  <div class="cart-head">
+    <h1>Seu pedido</h1>
+    <p>Confira o que você está levando e siga para o pagamento.</p>
+  </div>
+
+  <!-- ITEM PRINCIPAL -->
+  <section class="line-item" aria-label="Item principal">
+    <div class="li-check" aria-hidden="true">✓</div>
+    <div class="li-body">
+      <h2>Projeto 21 Dias Mais Leve</h2>
+      <p>Ebook com 8 módulos, programa guiado de 21 dias, cerca de 50 receitas e o Caderno de Ferramentas.</p>
+      <span class="li-tag">Entrega imediata em PDF</span>
+    </div>
+    <div class="li-price"><strong>R$&nbsp;24,90</strong></div>
+  </section>
+
+  <!-- ADICIONAL -->
+  <section class="bump" aria-label="Adicional opcional">
+    <label class="bump-label" for="bump">
+      <input type="checkbox" id="bump">
+      <span class="bump-box" aria-hidden="true"></span>
+      <span class="bump-content">
+        <span class="bump-eyebrow">ADICIONE AO SEU PEDIDO</span>
+        <span class="bump-title">Mente e Alimentação <em>por mais R$&nbsp;9,90</em></span>
+        <span class="bump-text">
+          O programa de 21 dias organiza <strong>o que</strong> você come. Este organiza <strong>o que faz você comer</strong>:
+          os oito gatilhos mais comuns, o ciclo do impulso, o pensamento “tudo ou nada” e um plano para o momento
+          da vontade intensa. 12 páginas, no mesmo formato e entregue junto.
+        </span>
+      </span>
+    </label>
+  </section>
+
+  <!-- RESUMO -->
+  <section class="summary" aria-live="polite">
+    <div class="sum-row"><span>Projeto 21 Dias Mais Leve</span><span>R$&nbsp;24,90</span></div>
+    <div class="sum-row bump-row" hidden><span>Mente e Alimentação</span><span>R$&nbsp;9,90</span></div>
+    <div class="sum-row sum-total"><span>Total</span><span id="total">R$&nbsp;24,90</span></div>
+    <a class="button" id="ir" href="#">Ir para o pagamento <span>↗</span></a>
+    <p class="fine sum-fine">Pagamento único, sem assinatura. Acesso imediato após a confirmação.</p>
+  </section>
+
+  <!-- CONFIANÇA -->
+  <ul class="trust">
+    <li><strong>7 dias para desistir</strong>Reembolso integral, conforme o artigo 49 do Código de Defesa do Consumidor.</li>
+    <li><strong>Entrega na hora</strong>Os arquivos chegam por e-mail assim que o pagamento é confirmado.</li>
+    <li><strong>Pagamento seguro</strong>A cobrança é processada pela plataforma de pagamentos, não por este site.</li>
+  </ul>
+
+  <p class="fine cart-legal">
+    Conteúdo educacional sobre alimentação, organização e hábitos. Não realiza diagnóstico nem prescrição
+    individualizada e não substitui acompanhamento com médico, nutricionista ou psicólogo. Não há garantia
+    de emagrecimento, perda de medidas ou formação de hábitos em 21 dias. Resultados variam entre pessoas.
+  </p>
+
+  <p class="cart-back"><a href="index.html">← Voltar e ver os detalhes do programa</a></p>
+</main>
+
+<script>
+(function () {
+  // ---- TROCAR PELOS SEUS DOIS LINKS DE CHECKOUT ----
+  var CHECKOUT = {
+    so:    '[LINK CHECKOUT 24,90]',   // somente o Projeto 21 Dias
+    combo: '[LINK CHECKOUT 34,80]'    // Projeto 21 Dias + Mente e Alimentacao
+  };
+  // --------------------------------------------------
+
+  var bump  = document.getElementById('bump');
+  var linha = document.querySelector('.bump-row');
+  var total = document.getElementById('total');
+  var ir    = document.getElementById('ir');
+
+  function brl(v) { return 'R$ ' + v.toFixed(2).replace('.', ','); }
+
+  function render() {
+    var com = bump.checked;
+    linha.hidden = !com;
+    total.textContent = brl(com ? 34.80 : 24.90);
+    ir.href = com ? CHECKOUT.combo : CHECKOUT.so;
+    document.body.classList.toggle('has-bump', com);
+  }
+
+  bump.addEventListener('change', render);
+
+  // Se a pessoa voltar do checkout, o navegador restaura o estado do checkbox:
+  // recalculamos para o link nunca ficar dessincronizado do que esta marcado.
+  window.addEventListener('pageshow', render);
+  render();
+})();
+</script>
+</body>
+</html>
