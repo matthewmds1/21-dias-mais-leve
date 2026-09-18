@@ -81,3 +81,9 @@
   .li-price{width:100%;padding-left:40px;margin-top:4px}
   .cart-page .step{display:none}
 }
+
+/* rodapé enxuto: só o aviso legal essencial, sem colunas nem placeholders */
+footer.slim{max-width:880px;margin:0 auto;padding:44px 24px 56px;border-top:1px solid var(--line)}
+footer.slim p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 12px}
+footer.slim p:last-child{margin-bottom:0}
+@media(max-width:560px){footer.slim{padding:32px 20px 44px}}
